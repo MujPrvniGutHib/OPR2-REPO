@@ -1,0 +1,60 @@
+@startuml
+
+
+
+    class Officer {
+        + name: String
+        + inspectLocation(location: Location): List<Fine>
+    }
+
+    class Location {
+        + name: String
+        + cars: List<Car>
+        + signs: List<TrafficSign>
+        + addSign(sign: TrafficSign)
+        + addCar(car: Car)
+    }
+
+    class TrafficSign {
+        + code: String
+        + {abstract} isViolatedBy(car: Car): boolean
+    }
+
+    class ProhibitorySign {
+        + prohibitedAction: ActionType
+        + isViolatedBy(car: Car): boolean
+    }
+
+    class DirectionalSign {
+        + allowedDirection: Direction
+        + isViolatedBy(car: Car): boolean
+    }
+
+    class SpeedLimitSign {
+        + maxSpeed: int
+        + isViolatedBy(car: Car): boolean
+    }
+
+    class Car {
+        + licensePlate: String
+        + currentAction: ActionType
+        + currentSpeed: int
+    }
+
+    enum ActionType {
+        PARKING
+        U_TURN
+        DRIVING_FORWARD
+        SPEEDING
+    }
+
+    class Fine {
+        + amount: double
+        + reason: String
+        + timestamp: Date
+    }
+
+
+
+
+@enduml
