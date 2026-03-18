@@ -1,7 +1,5 @@
 @startuml
 
-
-
     class Officer {
         + name: String
         + inspectLocation(location: Location): List<Fine>
@@ -15,37 +13,32 @@
         + addCar(car: Car)
     }
 
-    class TrafficSign {
-        + code: String
-        + {abstract} isViolatedBy(car: Car): boolean
+    abstract class TrafficSign {
     }
 
     class ProhibitorySign {
-        + prohibitedAction: ActionType
-        + isViolatedBy(car: Car): boolean
+        + prohibitedAction: CarAction
     }
 
     class DirectionalSign {
-        + allowedDirection: Direction
-        + isViolatedBy(car: Car): boolean
+        + allowedAction: CarAction
     }
 
     class SpeedLimitSign {
         + maxSpeed: int
-        + isViolatedBy(car: Car): boolean
     }
 
     class Car {
         + licensePlate: String
-        + currentAction: ActionType
-        + currentSpeed: int
+        + action: CarAction
+        + speed: int
     }
 
-    enum ActionType {
+    enum CarAction {
         PARKING
-        U_TURN
-        DRIVING_FORWARD
+        TURNING
         SPEEDING
+        DRIVING_STRAIGHT
     }
 
     class Fine {
@@ -54,15 +47,23 @@
         + timestamp: Date
     }
 
+    class FineManager {
+        + checkViolations(car: Car, location: Location): List<Fine>
+    }
+
     Officer --|> Location
-    Location <|-- TrafficSign
-    Location <|-- Car
+    Location o-- Car
+    Location o-- TrafficSign
     TrafficSign <|-- ProhibitorySign
     TrafficSign <|-- DirectionalSign
     TrafficSign <|-- SpeedLimitSign
-    FineManager --|> Fine : creates
-    FineManager --|> Car
-    FineManager -|> Location : checks rules
 
+    FineManager ..> Fine : creates
+    FineManager ..> Car
+    FineManager ..> Location
+
+    Car --> CarAction
+    ProhibitorySign --> CarAction
+    DirectionalSign --> CarAction
 
 @enduml
