@@ -54,15 +54,15 @@
         + timestamp: Date
     }
 
-    Officer --> Location
-    Location *-- TrafficSign
-    Location o-- Car
+    Officer --|> Location
+    Location <|-- TrafficSign
+    Location <|-- Car
     TrafficSign <|-- ProhibitorySign
     TrafficSign <|-- DirectionalSign
     TrafficSign <|-- SpeedLimitSign
-    FineManager ..> Fine : creates
-    FineManager ..> Car
-    FineManager ..> Location : checks rules
+    FineManager --|> Fine : creates
+    FineManager --|> Car
+    FineManager -|> Location : checks rules
 
 
 @enduml
