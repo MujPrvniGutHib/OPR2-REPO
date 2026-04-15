@@ -10,4 +10,16 @@ public class Fine {
         this.reason = reason;
         this.timestamp = new Date();
     }
+
+    public double getAmount() {
+        return amount;
+    }
+
+    public String getReason() {
+        return reason;
+    }
+
+    public Date getTimestamp() {
+        return timestamp;
+    }
 }
