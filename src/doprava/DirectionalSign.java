@@ -1,3 +1,5 @@
+package doprava;
+
 public class DirectionalSign extends TrafficSign {
     private final CarAction allowedAction;
 

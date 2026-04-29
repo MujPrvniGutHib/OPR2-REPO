@@ -1,3 +1,5 @@
+package doprava;
+
 public class SpeedLimitSign extends TrafficSign {
     private final int maxSpeed;
 

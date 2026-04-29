@@ -1,3 +1,5 @@
+package doprava;
+
 public class ProhibitorySign extends TrafficSign {
     private final CarAction prohibitedAction;
 

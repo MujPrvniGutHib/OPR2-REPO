@@ -1,3 +1,5 @@
+package doprava;
+
 public class Car {
     private final String licensePlate;
     private final CarAction action;
